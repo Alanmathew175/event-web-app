@@ -117,6 +117,10 @@ You can modify the Twilio call script to suit your event details.
 ✅ TODO / Improvements
 Add SMS support as fallback
 
+Add batch processing and rabbitmq in voice calling for scaling
+
+Add feature to update mobile number
+
 Admin dashboard to manage events
 
 Email notifications
