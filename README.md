@@ -1,126 +1,36 @@
-📞 Google OAuth Event Reminder App
-This is a full-stack application built with Next.js and Auth.js (formerly NextAuth) that enables users to log in using Google OAuth (v3). After logging in, users can enter their mobile number, which is then used to notify them about upcoming events via Twilio phone calls. The app uses MongoDB Atlas for data persistence and a Node.js + Express.js backend to manage background jobs and calling logic.
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-🚀 Features
-🔐 Google OAuth (v3) authentication with Auth.js
+## Getting Started
 
-📱 Users can add their mobile number once after login
+First, run the development server:
 
-📅 Display of latest upcoming events on the login success page
-
-☎️ Twilio integration to make automated calls 5 minutes before an event
-
-💾 User details including refresh tokens and phone numbers stored in MongoDB Atlas
-
-🔄 Refresh token-based login session management
-
-🕐 A cron job runs every minute to check for upcoming events and trigger Twilio calls
-
-🛠️ Tech Stack
-Frontend: Next.js, Auth.js (Google OAuth v3)
-
-Backend: Node.js, Express.js
-
-Database: MongoDB Atlas
-
-Authentication: Google OAuth
-
-Phone Calls: Twilio
-
-Job Scheduler: Node-Cron (runs every 1 minute)
-
-🧠 How It Works
-Login Flow
-
-Users log in using Google.
-
-On successful login, a refresh token is stored in MongoDB.
-
-The user is prompted to enter their mobile number (one-time entry).
-
-The homepage shows upcoming events after login.
-
-User Restrictions
-
-A user can only submit their phone number once.
-
-This is enforced through database checks.
-
-Event Notification
-
-A cron job runs every 1 minute using Node.js and Express.js.
-
-If a user has:
-
-A valid refresh token
-
-A registered phone number
-
-And an event in the next 5 minutes
-
-➡️ A Twilio call is triggered to the user’s phone.
-
-Logout
-
-On logout, the refresh token is removed from the database.
-
-📦 Installation
-
-git clone https://github.com/yourusername/google-oauth-event-reminder.git
-cd google-oauth-event-reminder
-Frontend Setup (Next.js)
-
-cd frontend
-npm install
-Create a .env.local file in the frontend directory with:
-
-env
-
-AUTH_GOOGLE_ID=
-AUTH_GOOGLE_SECRET=
-AUTH_SECRET=
-NEXT_PUBLIC_API_ENDPOINT=
-AUTH_TRUST_HOST=
-Run the development server:
-
+```bash
 npm run dev
-Backend Setup (Node.js + Express.js)
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-cd backend
-npm install
-Create a .env file in the backend directory:
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-env
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-DBURL=
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
-TWILIO_SID=
-TWILIO_TOKEN=
-TWILIO_PHONE=
-AUTH_GOOGLE_ID=
-AUTH_GOOGLE_SECRET=
-AUTH_REDIRCT_URL=
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-Start the backend server:
+## Learn More
 
-node index.js
-The cron job will now run every 1 minute and trigger calls as needed.
+To learn more about Next.js, take a look at the following resources:
 
-📌 Notes
-Ensure you have events stored with proper timestamps in your MongoDB collection.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-Mobile numbers should be stored in E.164 format (e.g., +15558675309) for Twilio compatibility.
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-You can modify the Twilio call script to suit your event details.
+## Deploy on Vercel
 
-✅ TODO / Improvements
-Add SMS support as fallback
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Add batch processing and rabbitmq in voice calling for scaling
-
-Add feature to update mobile number
-
-Admin dashboard to manage events
-
-Email notifications
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
